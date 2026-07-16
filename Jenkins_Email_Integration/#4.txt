@@ -1,0 +1,14 @@
+Started by user Sumit Ranjan Satapathy
+Running as SYSTEM
+Building in workspace C:\ProgramData\Jenkins\.jenkins\workspace\Email-Test
+No emails were triggered.
+[Email-Test] $ cmd /c call C:\WINDOWS\TEMP\jenkins2127679869360810665.bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\Email-Test>echo Jenkins Email Integration Successful 
+Jenkins Email Integration Successful
+
+C:\ProgramData\Jenkins\.jenkins\workspace\Email-Test>exit 0 
+Email was triggered for: Always
+Sending email for trigger: Always
+Sending email to: satapathysumit10@gmail.com
+Finished: SUCCESS

@@ -1,0 +1,10 @@
+{
+  "LambdaFunctionConfigurations": [
+    {
+      "LambdaFunctionArn": "arn:aws:lambda:ap-south-2:545009835529:function:S3UploadNotifier",
+      "Events": [
+        "s3:ObjectCreated:*"
+      ]
+    }
+  ]
+}
