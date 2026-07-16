@@ -54,30 +54,30 @@ DevOps_Automation_Lab
 ├── Shell_Scripting
 │   ├── README.md
 │   ├── Commands.txt
-│   ├── even_numbers.sh
-│   ├── while_loop.sh
-│   ├── until_loop.sh
-│   └── screenshots
+│   ├── even.sh
+│   └── Outputs
 │
 ├── Jenkins_Email_Integration
 │   ├── README.md
 │   ├── Commands.txt
-│   ├── screenshots
+│   ├── #4.txt 
+│   ├── Outputs
 │
 ├── Kubernetes_ReplicaSet
 │   ├── README.md
 │   ├── Commands.txt
 │   ├── replicaset.yaml
-│   └── screenshots
+│   └── Outputs
 │
 └── AWS_S3_Lambda_SNS
     ├── README.md
     ├── Commands.txt
     ├── lambda_function.py
+    ├── test.txt
     ├── trust-policy.json
     ├── notification.json
     ├── lambda.zip
-    └── screenshots
+    └── Outputs
 ```
 
 ---
