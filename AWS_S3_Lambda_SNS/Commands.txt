@@ -1,0 +1,191 @@
+AWS Lambda + Amazon SNS + Amazon S3 Email Notification
+==========================================================
+
+Objective:
+Creating a Lambda function and receive an email notification
+through Amazon SNS whenever an object is uploaded into an
+Amazon S3 bucket.
+
+==========================================================
+Step 1 : Verify AWS CLI
+==========================================================
+
+aws --version
+
+aws sts get-caller-identity
+
+aws configure list
+
+==========================================================
+Step 2 : Create SNS Topic
+==========================================================
+
+aws sns create-topic --name S3UploadNotification
+
+==========================================================
+Step 3 : Subscribe Email
+==========================================================
+
+aws sns subscribe --topic-arn "arn:aws:sns:ap-south-2:545009835529:S3UploadNotification" --protocol email --notification-endpoint satapathysumit10@gmail.com
+
+==========================================================
+Step 4 : Confirm Subscription
+==========================================================
+
+Open Gmail
+
+Click
+
+Confirm Subscription
+
+==========================================================
+Step 5 : Verify Subscription
+==========================================================
+
+aws sns list-subscriptions-by-topic --topic-arn arn:aws:sns:ap-south-2:545009835529:S3UploadNotification
+
+==========================================================
+Step 6 : Create S3 Bucket
+==========================================================
+
+aws s3 mb s3://sumit-rs-s3-upload-545009835529
+
+==========================================================
+Step 7 : Create IAM Trust Policy
+==========================================================
+
+Create
+
+trust-policy.json
+
+Paste the trust policy JSON.
+
+==========================================================
+Step 8 : Create IAM Role
+==========================================================
+
+aws iam create-role --role-name LambdaS3SNSRole --assume-role-policy-document file://trust-policy.json
+
+==========================================================
+Step 9 : Attach Lambda Basic Execution Role
+==========================================================
+
+aws iam attach-role-policy --role-name LambdaS3SNSRole --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+
+==========================================================
+Step 10 : Attach SNS Full Access
+==========================================================
+
+aws iam attach-role-policy --role-name LambdaS3SNSRole --policy-arn arn:aws:iam::aws:policy/AmazonSNSFullAccess
+
+==========================================================
+Step 11 : Create Lambda Source File
+==========================================================
+
+Create
+
+lambda_function.py
+
+Paste the Lambda Python code.
+
+==========================================================
+Step 12 : Create ZIP Package
+==========================================================
+
+Compress-Archive -Path lambda_function.py -DestinationPath lambda.zip -Force
+
+==========================================================
+Step 13 : Get IAM Role ARN
+==========================================================
+
+aws iam get-role --role-name LambdaS3SNSRole
+
+==========================================================
+Step 14 : Create Lambda Function
+==========================================================
+
+aws lambda create-function --function-name S3UploadNotifier --runtime python3.12 --handler lambda_function.lambda_handler --zip-file fileb://lambda.zip --role arn:aws:iam::545009835529:role/LambdaS3SNSRole
+
+==========================================================
+Step 15 : Verify Lambda
+==========================================================
+
+aws lambda list-functions
+
+==========================================================
+Step 16 : Allow S3 To Invoke Lambda
+==========================================================
+
+aws lambda add-permission --function-name S3UploadNotifier --statement-id AllowS3Invoke --action lambda:InvokeFunction --principal s3.amazonaws.com --source-arn arn:aws:s3:::sumit-rs-s3-upload-545009835529
+
+==========================================================
+Step 17 : Create Bucket Notification Configuration
+==========================================================
+
+Create
+
+notification.json
+
+Paste notification configuration JSON.
+
+==========================================================
+Step 18 : Configure Bucket Notification
+==========================================================
+
+aws s3api put-bucket-notification-configuration --bucket sumit-rs-s3-upload-545009835529 --notification-configuration file://notification.json
+
+==========================================================
+Step 19 : Create Test File
+==========================================================
+
+echo Hello AWS > test.txt
+
+==========================================================
+Step 20 : Upload File
+==========================================================
+
+aws s3 cp test.txt s3://sumit-rs-s3-upload-545009835529/
+
+==========================================================
+Step 21 : Verify
+==========================================================
+
+Check Gmail
+
+Expected Email
+
+Subject
+
+S3 Upload Notification
+
+Body
+
+New Object Uploaded
+
+Bucket:
+sumit-rs-s3-upload-545009835529
+
+Object:
+test.txt
+
+Uploaded Successfully
+
+==========================================================
+Useful Verification Commands
+==========================================================
+
+aws s3 ls
+
+aws s3 ls s3://sumit-rs-s3-upload-545009835529
+
+aws sns list-topics
+
+aws lambda list-functions
+
+aws s3api get-bucket-notification-configuration --bucket sumit-rs-s3-upload-545009835529
+
+==========================================================
+Task Status
+
+Completed Successfully
+==========================================================
