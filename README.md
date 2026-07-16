@@ -182,32 +182,6 @@ Upload File
 
 ---
 
-# 📸 Screenshots
-
-## Shell Scripting
-
-(Add screenshots)
-
----
-
-## Jenkins Email Notification
-
-(Add screenshots)
-
----
-
-## Kubernetes ReplicaSet
-
-(Add screenshots)
-
----
-
-## AWS Email Notification
-
-(Add screenshots)
-
----
-
 # ▶ How to Run
 
 Clone the repository
@@ -253,10 +227,6 @@ https://github.com/SUMITXP10
 
 LinkedIn:
 
-(Add your LinkedIn URL)
+https://www.linkedin.com/in/sumitxpr10
 
 ---
-
-# ⭐ If you found this project useful
-
-Please consider giving this repository a ⭐.
