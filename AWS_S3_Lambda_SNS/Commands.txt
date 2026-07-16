@@ -188,4 +188,3 @@ aws s3api get-bucket-notification-configuration --bucket sumit-rs-s3-upload-5450
 Task Status
 
 Completed Successfully
-==========================================================
