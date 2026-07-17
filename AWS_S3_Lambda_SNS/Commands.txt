@@ -3,9 +3,7 @@ AWS Lambda + Amazon SNS + Amazon S3 Email Notification
 
 Objective:
 
-Creating a Lambda function and receive an email notification
-through Amazon SNS whenever an object is uploaded into an
-Amazon S3 bucket.
+Create the function and through SNS you should receive the notification when the object is uploaded into S3 bucket through Mail Id
 
 ==========================================================
 Step 1 : Verify AWS CLI

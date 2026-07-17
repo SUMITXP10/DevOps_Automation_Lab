@@ -1,0 +1,259 @@
+Jenkins Email Integration
+==========================================================
+
+Objective:
+
+Perform Email integration in Jenkins
+
+==========================================================
+Step 1 : Verify Jenkins
+==========================================================
+
+Open Browser
+
+http://localhost:8080
+
+==========================================================
+Step 2 : Install Plugins
+==========================================================
+
+Manage Jenkins
+
+↓
+
+Plugins
+
+↓
+
+Available Plugins
+
+↓
+
+Install
+
+Email Extension Plugin
+
+Mailer Plugin
+
+==========================================================
+Step 3 : Configure Gmail SMTP
+==========================================================
+
+Manage Jenkins
+
+↓
+
+System
+
+↓
+
+Extended E-mail Notification
+
+SMTP Server
+
+smtp.gmail.com
+
+SMTP Port
+
+587
+
+Enable
+
+Use TLS
+
+Credentials
+
+Add Username with Password
+
+Username
+
+satapathysumit10@gmail.com
+
+Password
+
+<Gmail App Password>
+
+Scope
+
+Global
+
+ID
+
+gmail-smtp
+
+Description
+
+Gmail SMTP Credential
+
+==========================================================
+Step 4 : Configure Email Notification
+==========================================================
+
+Manage Jenkins
+
+↓
+
+System
+
+↓
+
+E-mail Notification
+
+SMTP Server
+
+smtp.gmail.com
+
+Use SMTP Authentication
+
+Username
+
+satapathysumit10@gmail.com
+
+Password
+
+<Gmail App Password>
+
+SMTP Port
+
+587
+
+Enable
+
+Use TLS
+
+Reply-To Address
+
+satapathysumit10@gmail.com
+
+Charset
+
+UTF-8
+
+==========================================================
+Step 5 : Save Configuration
+==========================================================
+
+Click
+
+Save
+
+==========================================================
+Step 6 : Create Freestyle Project
+==========================================================
+
+Dashboard
+
+↓
+
+New Item
+
+↓
+
+Freestyle Project
+
+Project Name
+
+Email-Test
+
+==========================================================
+Step 7 : Build Step
+==========================================================
+
+Build Steps
+
+↓
+
+Execute Windows Batch Command
+
+Command
+
+echo Jenkins Email Integration Successful
+
+==========================================================
+Step 8 : Post Build Action
+==========================================================
+
+Post Build Actions
+
+↓
+
+Editable Email Notification
+
+Trigger
+
+Always
+
+Recipient List
+
+satapathysumit10@gmail.com
+
+==========================================================
+Step 9 : Save Project
+==========================================================
+
+Click
+
+Save
+
+==========================================================
+Step 10 : Build Project
+==========================================================
+
+Build Now
+
+==========================================================
+Step 11 : Verify Console Output
+==========================================================
+
+Console Output
+
+Expected
+
+Jenkins Email Integration Successful
+
+Email was triggered for: Always
+
+Sending email to:
+
+satapathysumit10@gmail.com
+
+Finished: SUCCESS
+
+==========================================================
+Step 12 : Verify Gmail
+==========================================================
+
+Open Gmail
+
+Verify Email Received
+
+Subject
+
+Email-Test Build #<Build_Number> SUCCESS
+
+==========================================================
+Useful Jenkins Commands
+==========================================================
+
+Check Java
+
+java -version
+
+Check Jenkins Service
+
+sc query Jenkins
+
+Restart Jenkins
+
+net stop Jenkins
+
+net start Jenkins
+
+Check Jenkins Port
+
+netstat -ano | findstr :8080
+
+==========================================================
+Task Status
+
+Completed Successfully

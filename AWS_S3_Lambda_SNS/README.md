@@ -58,7 +58,7 @@ trust-policy.json
 notification.json
 Commands.txt
 README.md
-Screenshots/
+Outputs/
 ```
 
 ---

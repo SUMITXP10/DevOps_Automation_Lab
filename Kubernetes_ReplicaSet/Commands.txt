@@ -1,0 +1,195 @@
+Kubernetes ReplicaSet Self-Healing
+==========================================================
+
+Objective:
+
+Create Replica set with 3 replicas , Delete the Pod and it should be created again automatically .
+
+==========================================================
+Step 1 : Verify Kubernetes Cluster
+==========================================================
+
+kubectl version
+
+kubectl cluster-info
+
+kubectl get nodes
+
+==========================================================
+Step 2 : Create Working Directory
+==========================================================
+
+mkdir Kubernetes_ReplicaSet
+
+cd Kubernetes_ReplicaSet
+
+==========================================================
+Step 3 : Create ReplicaSet YAML
+==========================================================
+
+code replicaset.yaml
+
+(or)
+
+nano replicaset.yaml
+
+Paste the ReplicaSet YAML configuration.
+
+==========================================================
+Step 4 : Verify YAML
+==========================================================
+
+cat replicaset.yaml
+
+==========================================================
+Step 5 : Create ReplicaSet
+==========================================================
+
+kubectl apply -f replicaset.yaml
+
+==========================================================
+Step 6 : Verify ReplicaSet
+==========================================================
+
+kubectl get rs
+
+==========================================================
+Step 7 : Verify Running Pods
+==========================================================
+
+kubectl get pods
+
+==========================================================
+Step 8 : Get Detailed Information
+==========================================================
+
+kubectl describe rs nginx-replicaset
+
+==========================================================
+Step 9 : Delete One Pod
+==========================================================
+
+kubectl delete pod <pod-name>
+
+Example
+
+kubectl delete pod nginx-replicaset-6b76d98b6d-r42j8
+
+==========================================================
+Step 10 : Verify Automatic Pod Recreation
+==========================================================
+
+kubectl get pods
+
+Expected Result
+
+Old Pod
+
+Terminating
+
+↓
+
+ReplicaSet detects
+
+1/3 Pods
+
+↓
+
+Creates New Pod
+
+↓
+
+Back to
+
+3/3 Pods
+
+==========================================================
+Step 11 : Watch Live Recreation
+==========================================================
+
+kubectl get pods -w
+
+Press
+
+Ctrl + C
+
+to stop watching.
+
+==========================================================
+Step 12 : Verify ReplicaSet
+==========================================================
+
+kubectl get rs
+
+Expected
+
+Desired
+
+3
+
+Current
+
+3
+
+Ready
+
+3
+
+==========================================================
+Step 13 : View ReplicaSet Details
+==========================================================
+
+kubectl describe rs
+
+==========================================================
+Step 14 : View Cluster Objects
+==========================================================
+
+kubectl get all
+
+==========================================================
+Step 15 : Cleanup
+==========================================================
+
+kubectl delete -f replicaset.yaml
+
+==========================================================
+Verification Commands
+==========================================================
+
+kubectl get nodes
+
+kubectl get pods
+
+kubectl get rs
+
+kubectl describe rs
+
+kubectl get all
+
+==========================================================
+Expected Output
+==========================================================
+
+ReplicaSet Created Successfully
+
+Desired Replicas : 3
+
+Current Replicas : 3
+
+Ready Replicas : 3
+
+Delete One Pod
+
+↓
+
+New Pod Created Automatically
+
+↓
+
+Replica Count Maintained
+
+==========================================================
+Task Status
+
+Completed Successfully
