@@ -1,6 +1,9 @@
  AWS CloudWatch Monitoring
 =========================================================
 
+Create a CloudWatch alarm that triggers when CPU utilization of an EC2 instance exceeds 5%.
+Send an SNS notification when the alarm is triggered .
+
 ---------------------------------------------------------
 1. Configure AWS CLI
 ---------------------------------------------------------
