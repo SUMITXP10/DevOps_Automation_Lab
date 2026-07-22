@@ -1,0 +1,54 @@
+# -----------------------------
+# Terraform
+# -----------------------------
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Keep provider version lock file
+# (Recommended to commit for reproducible builds)
+# .terraform.lock.hcl
+
+# -----------------------------
+# AWS Credentials
+# -----------------------------
+.aws/
+
+# -----------------------------
+# Environment Variables
+# -----------------------------
+.env
+.env.*
+
+# -----------------------------
+# SSH Keys
+# -----------------------------
+*.pem
+*.key
+*.ppk
+
+# -----------------------------
+# Logs
+# -----------------------------
+*.log
+
+# -----------------------------
+# VS Code
+# -----------------------------
+.vscode/
+
+# -----------------------------
+# Vim Swap Files
+# -----------------------------
+*.swp
+
+# -----------------------------
+# OS Files
+# -----------------------------
+.DS_Store
+Thumbs.db

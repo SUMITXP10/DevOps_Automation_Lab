@@ -1,0 +1,133 @@
+**********************
+PowerShell transcript start
+Start time: 20260722162811
+Username: DESKTOP-94J2OEC\DELL
+RunAs User: DESKTOP-94J2OEC\DELL
+Configuration Name: 
+Machine: DESKTOP-94J2OEC (Microsoft Windows NT 10.0.28120.0)
+Host Application: C:\Program Files\WindowsApps\Microsoft.PowerShell_7.6.3.0_x64__8wekyb3d8bbwe\pwsh.dll -noexit -command try { . "c:\Users\DELL\AppData\Local\Programs\Microsoft VS Code\8a7abeba6e\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1" } catch {}
+Process ID: 26648
+PSVersion: 7.6.3
+PSEdition: Core
+GitCommitId: 7.6.3
+OS: Microsoft Windows 10.0.28120
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is .\Terminal_Output.txt
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cDELL\x5cDownloads\x5cDeVops Project\x5cDevOps_Automation_Lab\x5cTerraform_EC2_S3PS C:\Users\DELL\Downloads\DeVops Project\DevOps_Automation_Lab\Terraform_EC2_S3> ]633;B
+PS>terraform version
+Terraform v1.15.6
+on windows_amd64
+
+Your version of Terraform is out of date! The latest version
+is 1.15.8. You can update by downloading from https://developer.hashicorp.com/ter
+raform/install
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cDELL\x5cDownloads\x5cDeVops Project\x5cDevOps_Automation_Lab\x5cTerraform_EC2_S3PS C:\Users\DELL\Downloads\DeVops Project\DevOps_Automation_Lab\Terraform_EC2_S3> ]633;B
+PS>aws sts get-caller-identity
+{
+    "UserId": "AIDAX5ZI6DYE2VJGATDE7",
+    "Account": "545009835529",
+    "Arn": "arn:aws:iam::545009835529:user/Sumit-RS"
+}
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cDELL\x5cDownloads\x5cDeVops Project\x5cDevOps_Automation_Lab\x5cTerraform_EC2_S3PS C:\Users\DELL\Downloads\DeVops Project\DevOps_Automation_Lab\Terraform_EC2_S3> ]633;B
+PS>aws configure list
+NAME       : VALUE                    : TYPE             : LOCATION
+profile    : <not set>                : None             : None
+access_key : ****************UFLP     : shared-credentials-file :
+secret_key : ****************ThNd     : shared-credentials-file :
+region     : ap-south-2               : config-file      : ~/.aws/config
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cDELL\x5cDownloads\x5cDeVops Project\x5cDevOps_Automation_Lab\x5cTerraform_EC2_S3PS C:\Users\DELL\Downloads\DeVops Project\DevOps_Automation_Lab\Terraform_EC2_S3> ]633;B
+PS>wsl
+dell@DESKTOP-94J2OEC:/mnt/c/Users/DELL/Downloads/DeVops Project/DevOps_Automation
+_Lab/Terraform_EC2_S3$ touch provider.tf main.tf variables.tf outputs.tf terrafor
+m.tfvars README.md Commands.txt .gitignore
+dell@DESKTOP-94J2OEC:/mnt/c/Users/DELL/Downloads/DeVops Project/DevOps_Automation
+_Lab/Terraform_EC2_S3$ exit
+logout
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cDELL\x5cDownloads\x5cDeVops Project\x5cDevOps_Automation_Lab\x5cTerraform_EC2_S3PS C:\Users\DELL\Downloads\DeVops Project\DevOps_Automation_Lab\Terraform_EC2_S3> ]633;B
+PS>wsl -d Ubuntu
+dell@DESKTOP-94J2OEC:/mnt/c/Users/DELL/Downloads/DeVops Project/DevOps_Automation
+_Lab/Terraform_EC2_S3$ mv outputs.tf Outputs.tf
+mv: 'outputs.tf' and 'Outputs.tf' are the same file
+dell@DESKTOP-94J2OEC:/mnt/c/Users/DELL/Downloads/DeVops Project/DevOps_Automation
+_Lab/Terraform_EC2_S3$ mv outputs.tf temp.tf
+dell@DESKTOP-94J2OEC:/mnt/c/Users/DELL/Downloads/DeVops Project/DevOps_Automation
+_Lab/Terraform_EC2_S3$ mv temp.tf Outputs.tf
+dell@DESKTOP-94J2OEC:/mnt/c/Users/DELL/Downloads/DeVops Project/DevOps_Automation
+_Lab/Terraform_EC2_S3$ nano Outputs.tf
+dell@DESKTOP-94J2OEC:/mnt/c/Users/DELL/Downloads/DeVops Project/DevOps_Automation
+_Lab/Terraform_EC2_S3$ nano terraform.tfvars
+dell@DESKTOP-94J2OEC:/mnt/c/Users/DELL/Downloads/DeVops Project/DevOps_Automation
+_Lab/Terraform_EC2_S3$ exit
+logout
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cDELL\x5cDownloads\x5cDeVops Project\x5cDevOps_Automation_Lab\x5cTerraform_EC2_S3PS C:\Users\DELL\Downloads\DeVops Project\DevOps_Automation_Lab\Terraform_EC2_S3> ]633;B
+PS>terraform init
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cDELL\x5cDownloads\x5cDeVops Project\x5cDevOps_Automation_Lab\x5cTerraform_EC2_S3PS C:\Users\DELL\Downloads\DeVops Project\DevOps_Automation_Lab\Terraform_EC2_S3> ]633;B
+PS>terraform validate
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cDELL\x5cDownloads\x5cDeVops Project\x5cDevOps_Automation_Lab\x5cTerraform_EC2_S3PS C:\Users\DELL\Downloads\DeVops Project\DevOps_Automation_Lab\Terraform_EC2_S3> ]633;B
+PS>terraform fmt
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cDELL\x5cDownloads\x5cDeVops Project\x5cDevOps_Automation_Lab\x5cTerraform_EC2_S3PS C:\Users\DELL\Downloads\DeVops Project\DevOps_Automation_Lab\Terraform_EC2_S3> ]633;B
+PS>terraform plan
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cDELL\x5cDownloads\x5cDeVops Project\x5cDevOps_Automation_Lab\x5cTerraform_EC2_S3PS C:\Users\DELL\Downloads\DeVops Project\DevOps_Automation_Lab\Terraform_EC2_S3> ]633;B
+PS>terraform apply -auto-approve
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cDELL\x5cDownloads\x5cDeVops Project\x5cDevOps_Automation_Lab\x5cTerraform_EC2_S3PS C:\Users\DELL\Downloads\DeVops Project\DevOps_Automation_Lab\Terraform_EC2_S3> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cDELL\x5cDownloads\x5cDeVops Project\x5cDevOps_Automation_Lab\x5cTerraform_EC2_S3PS C:\Users\DELL\Downloads\DeVops Project\DevOps_Automation_Lab\Terraform_EC2_S3> ]633;B
+PS>terraform output
+extra_volume_id = "vol-0bacd27c56df52b96"
+instance_id = "i-05e120a36cf14a7c0"
+public_ip = "16.112.191.217"eVops Project\DevOps_Automation_Lab\Terraform_EC2_S3
+s3_bucket_name = "sumit-ranjan-terraform-545009835529"
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cDELL\x5cDownloads\x5cDeVops Project\x5cDevOps_Automation_Lab\x5cTerraform_EC2_S3PS C:\Users\DELL\Downloads\DeVops Project\DevOps_Automation_Lab\Terraform_EC2_S3> ]633;B
+PS>terraform state list
+data.aws_ami.ubuntu
+aws_ebs_volume.extra_volume
+aws_instance.ec2
+aws_s3_bucket.bucket
+aws_s3_bucket_versioning.bucket_versioning
+aws_volume_attachment.extra_attach
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cDELL\x5cDownloads\x5cDeVops Project\x5cDevOps_Automation_Lab\x5cTerraform_EC2_S3PS C:\Users\DELL\Downloads\DeVops Project\DevOps_Automation_Lab\Terraform_EC2_S3> ]633;B
+PS>aws ec2 describe-instances --instance-ids i-05e120a36cf14a7c0
+                        "AvailabilityZoneId": "aps2-az1",
+                        "GroupName": "",
+                        "Tenancy": "default",
+                        "AvailabilityZone": "ap-south-2a"
+                    },
+                    "Monitoring": {
+                        "State": "disabled"
+                    },
+                    "SubnetId": "subnet-06f78f2efbb970346",
+                    "VpcId": "vpc-010f0546d43301be4",
+                    "PrivateIpAddress": "172.31.8.84",
+                    "PublicIpAddress": "16.112.191.217"
+                }
+            ]
+        }
+    ]
+}
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cDELL\x5cDownloads\x5cDeVops Project\x5cDevOps_Automation_Lab\x5cTerraform_EC2_S3PS C:\Users\DELL\Downloads\DeVops Project\DevOps_Automation_Lab\Terraform_EC2_S3> ]633;B
+PS>aws ec2 describe-volumes
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cDELL\x5cDownloads\x5cDeVops Project\x5cDevOps_Automation_Lab\x5cTerraform_EC2_S3PS C:\Users\DELL\Downloads\DeVops Project\DevOps_Automation_Lab\Terraform_EC2_S3> ]633;B
+PS>aws s3 ls
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cDELL\x5cDownloads\x5cDeVops Project\x5cDevOps_Automation_Lab\x5cTerraform_EC2_S3PS C:\Users\DELL\Downloads\DeVops Project\DevOps_Automation_Lab\Terraform_EC2_S3> ]633;B
+PS>aws s3api get-bucket-versioning --bucket sumit-ranjan-terraform-545009835529
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cDELL\x5cDownloads\x5cDeVops Project\x5cDevOps_Automation_Lab\x5cTerraform_EC2_S3PS C:\Users\DELL\Downloads\DeVops Project\DevOps_Automation_Lab\Terraform_EC2_S3> ]633;B
+PS>terraform destroy -auto-approve
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cDELL\x5cDownloads\x5cDeVops Project\x5cDevOps_Automation_Lab\x5cTerraform_EC2_S3PS C:\Users\DELL\Downloads\DeVops Project\DevOps_Automation_Lab\Terraform_EC2_S3> ]633;B
+PS>Stop-Transcript
+**********************
+PowerShell transcript end
+End time: 20260722180518
+**********************
