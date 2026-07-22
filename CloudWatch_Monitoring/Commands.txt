@@ -1,1 +1,192 @@
-Hi
+ AWS CloudWatch Monitoring
+=========================================================
+
+---------------------------------------------------------
+1. Configure AWS CLI
+---------------------------------------------------------
+
+aws configure
+
+aws sts get-caller-identity
+
+---------------------------------------------------------
+2. Create EC2 Key Pair
+---------------------------------------------------------
+
+aws ec2 create-key-pair ^
+--key-name CWKey ^
+--query "KeyMaterial" ^
+--output text > .\CloudWatch_Monitoring\CWKey.pem
+
+dir .\CloudWatch_Monitoring\*.pem
+
+---------------------------------------------------------
+3. Get Default VPC
+---------------------------------------------------------
+
+aws ec2 describe-vpcs ^
+--filters "Name=isDefault,Values=true" ^
+--query "Vpcs[0].VpcId" ^
+--output text
+
+---------------------------------------------------------
+4. Get Default Subnet
+---------------------------------------------------------
+
+aws ec2 describe-subnets ^
+--filters "Name=default-for-az,Values=true" ^
+--query "Subnets[0].SubnetId" ^
+--output text
+
+---------------------------------------------------------
+5. Create Security Group
+---------------------------------------------------------
+
+aws ec2 create-security-group ^
+--group-name CW-SG ^
+--description "CloudWatch Lab Security Group" ^
+--vpc-id <VPC_ID>
+
+---------------------------------------------------------
+6. Allow SSH
+---------------------------------------------------------
+
+aws ec2 authorize-security-group-ingress ^
+--group-id <SECURITY_GROUP_ID> ^
+--protocol tcp ^
+--port 22 ^
+--cidr 0.0.0.0/0
+
+---------------------------------------------------------
+7. Get Latest Ubuntu 24.04 AMI
+---------------------------------------------------------
+
+aws ssm get-parameter ^
+--name /aws/service/canonical/ubuntu/server/24.04/stable/current/amd64/hvm/ebs-gp3/ami-id ^
+--query "Parameter.Value" ^
+--output text
+
+---------------------------------------------------------
+8. Launch EC2 Instance
+---------------------------------------------------------
+
+aws ec2 run-instances ^
+--image-id <AMI_ID> ^
+--instance-type t3.medium ^
+--key-name CWKey ^
+--security-group-ids <SECURITY_GROUP_ID> ^
+--subnet-id <SUBNET_ID> ^
+--count 1 ^
+--tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=CWMonitoringLab}]"
+
+---------------------------------------------------------
+9. Get Instance ID
+---------------------------------------------------------
+
+aws ec2 describe-instances ^
+--filters "Name=tag:Name,Values=CWMonitoringLab" ^
+--query "Reservations[].Instances[].InstanceId" ^
+--output text
+
+---------------------------------------------------------
+10. Wait Until Running
+---------------------------------------------------------
+
+aws ec2 wait instance-running ^
+--instance-ids <INSTANCE_ID>
+
+---------------------------------------------------------
+11. Get Public IP
+---------------------------------------------------------
+
+aws ec2 describe-instances ^
+--instance-ids <INSTANCE_ID> ^
+--query "Reservations[].Instances[].PublicIpAddress" ^
+--output text
+
+---------------------------------------------------------
+12. Connect to EC2
+---------------------------------------------------------
+
+ssh -i .\CloudWatch_Monitoring\CWKey.pem ubuntu@<PUBLIC_IP>
+
+---------------------------------------------------------
+13. Inside EC2
+---------------------------------------------------------
+
+hostname
+
+top
+
+yes > /dev/null &
+
+top
+
+exit
+
+---------------------------------------------------------
+14. Create SNS Topic
+---------------------------------------------------------
+
+aws sns create-topic ^
+--name CloudWatchCPUAlarm
+
+---------------------------------------------------------
+15. Subscribe Email
+---------------------------------------------------------
+
+aws sns subscribe ^
+--topic-arn arn:aws:sns:ap-south-2:<ACCOUNT_ID>:CloudWatchCPUAlarm ^
+--protocol email ^
+--notification-endpoint YOUR_EMAIL@gmail.com
+
+---------------------------------------------------------
+16. Verify Subscription
+---------------------------------------------------------
+
+aws sns list-subscriptions-by-topic ^
+--topic-arn arn:aws:sns:ap-south-2:<ACCOUNT_ID>:CloudWatchCPUAlarm
+
+---------------------------------------------------------
+17. Create CloudWatch Alarm
+---------------------------------------------------------
+
+aws cloudwatch put-metric-alarm ^
+--alarm-name EC2CPUAbove5 ^
+--alarm-description "Alarm when CPU exceeds 5 percent" ^
+--metric-name CPUUtilization ^
+--namespace AWS/EC2 ^
+--statistic Average ^
+--period 60 ^
+--threshold 5 ^
+--comparison-operator GreaterThanThreshold ^
+--dimensions Name=InstanceId,Value=<INSTANCE_ID> ^
+--evaluation-periods 1 ^
+--alarm-actions arn:aws:sns:ap-south-2:<ACCOUNT_ID>:CloudWatchCPUAlarm ^
+--unit Percent
+
+---------------------------------------------------------
+18. Verify Alarm
+---------------------------------------------------------
+
+aws cloudwatch describe-alarms ^
+--alarm-names EC2CPUAbove5
+
+---------------------------------------------------------
+19. Verify EC2 CPU Utilization
+---------------------------------------------------------
+
+aws cloudwatch get-metric-statistics ^
+--namespace AWS/EC2 ^
+--metric-name CPUUtilization ^
+--dimensions Name=InstanceId,Value=<INSTANCE_ID> ^
+--statistics Average ^
+--start-time <START_TIME> ^
+--end-time <END_TIME> ^
+--period 60
+
+---------------------------------------------------------
+20. Stop PowerShell Transcript
+---------------------------------------------------------
+
+Stop-Transcript

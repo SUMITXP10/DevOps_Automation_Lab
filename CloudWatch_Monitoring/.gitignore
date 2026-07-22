@@ -1,0 +1,22 @@
+# Private Keys
+*.pem
+*.key
+*.ppk
+
+# AWS
+.aws/
+
+# Environment
+.env
+.env.*
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# VS Code
+.vscode/
+
+# Vim swap files
+*.swp
