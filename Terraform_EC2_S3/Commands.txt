@@ -1,1 +1,145 @@
-Hi
+Terraform - EC2 + EBS + S3 Versioning
+=========================================================
+
+Write the terraform code to create EC2 instance with type t3.medium, root volume as 12gib and should get terminated on instance deletion, attach additional volume of 20gib and a S3 bucket with enabled bucket versioning.
+
+---------------------------------------------------------
+1. Navigate to Project Directory
+---------------------------------------------------------
+
+cd "C:\Users\DELL\Downloads\DeVops Project\DevOps_Automation_Lab\Terraform_EC2_S3"
+
+---------------------------------------------------------
+2. Start PowerShell Transcript
+---------------------------------------------------------
+
+Start-Transcript .\Terminal_Output.txt
+
+---------------------------------------------------------
+3. Verify Terraform Installation
+---------------------------------------------------------
+
+terraform version
+
+---------------------------------------------------------
+4. Verify AWS CLI Authentication
+---------------------------------------------------------
+
+aws sts get-caller-identity
+
+---------------------------------------------------------
+5. Verify AWS CLI Configuration
+---------------------------------------------------------
+
+aws configure list
+
+---------------------------------------------------------
+6. Create Project Files
+---------------------------------------------------------
+
+New-Item provider.tf,main.tf,variables.tf,outputs.tf,terraform.tfvars,README.md,Commands.txt,.gitignore -ItemType File
+
+---------------------------------------------------------
+7. Open Project in VS Code
+---------------------------------------------------------
+
+code .
+
+---------------------------------------------------------
+8. Initialize Terraform
+---------------------------------------------------------
+
+terraform init
+
+---------------------------------------------------------
+9. Validate Terraform Configuration
+---------------------------------------------------------
+
+terraform validate
+
+---------------------------------------------------------
+10. Format Terraform Files
+---------------------------------------------------------
+
+terraform fmt
+
+---------------------------------------------------------
+11. Preview Infrastructure Changes
+---------------------------------------------------------
+
+terraform plan
+
+---------------------------------------------------------
+12. Create AWS Infrastructure
+---------------------------------------------------------
+
+terraform apply -auto-approve
+
+---------------------------------------------------------
+13. View Terraform Outputs
+---------------------------------------------------------
+
+terraform output
+
+---------------------------------------------------------
+14. List Terraform Resources
+---------------------------------------------------------
+
+terraform state list
+
+---------------------------------------------------------
+15. Verify EC2 Instance
+---------------------------------------------------------
+
+aws ec2 describe-instances --instance-ids i-05e120a36cf14a7c0
+
+---------------------------------------------------------
+16. Verify EBS Volumes
+---------------------------------------------------------
+
+aws ec2 describe-volumes
+
+---------------------------------------------------------
+17. Verify S3 Buckets
+---------------------------------------------------------
+
+aws s3 ls
+
+---------------------------------------------------------
+18. Verify S3 Bucket Versioning
+---------------------------------------------------------
+
+aws s3api get-bucket-versioning --bucket sumit-ranjan-terraform-545009835529
+
+---------------------------------------------------------
+19. (Optional) Display Current Terraform State
+---------------------------------------------------------
+
+terraform show
+
+---------------------------------------------------------
+20. (Optional) Destroy Infrastructure
+---------------------------------------------------------
+
+terraform destroy
+
+---------------------------------------------------------
+21. Stop PowerShell Transcript
+---------------------------------------------------------
+
+Stop-Transcript
+
+=========================================================
+Git Commands
+=========================================================
+
+git status
+
+git add .
+
+git commit -m "Completed Terraform EC2 S3 Task"
+
+git push origin main
+
+=========================================================
+End of Task
