@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multi-container-deployment
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: multi-container
+
+  template:
+    metadata:
+      labels:
+        app: multi-container
+
+    spec:
+      containers:
+
+      - name: ubuntu-container
+        image: ubuntu:latest
+        command:
+        - sleep
+        - "3600"
+
+      - name: web-container
+        image: httpd:2.4
+        ports:
+        - containerPort: 80
